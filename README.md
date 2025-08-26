@@ -5,8 +5,11 @@ It provides a simple and intuitive interface to keep track of waitlists, serving
 FEATURES:
 
 Estimated Wait Time: Calculate and display approximate wait times.
+
 Responsive Design: Works well on both desktop and mobile devices.
+
 Real-Time Updates: Changes in the queue are instantly visible.
+
 Timeframe Division: Organize queues based on specific timeframes (e.g., morning, afternoon, evening) for better scheduling and clarity.
 
 
