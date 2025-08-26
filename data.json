@@ -1,0 +1,43 @@
+{
+  "Canteen": {
+    "Morning": [
+      1,
+      9
+    ],
+    "Afternoon": [
+      1,
+      2
+    ],
+    "Evening": [
+      6,
+      1
+    ],
+    "Night": [
+      3
+    ],
+    "undefined": [
+      18,
+      4
+    ]
+  },
+  "Xerox Shop": {
+    "Morning": [
+      6,
+      4
+    ],
+    "Afternoon": [
+      12
+    ],
+    "Evening": [
+      4
+    ],
+    "Night": [
+      1
+    ],
+    "undefined": [
+      1,
+      4,
+      2
+    ]
+  }
+}

@@ -9,7 +9,15 @@ app.use(express.static("public"));
 
 const dbPath = path.join(__dirname, "data.json");
 
-// Get average wait times for each place and time segment
+function getTimeSegment() {
+  const hour = new Date().getHours();
+  if (hour >= 6 && hour < 12) return "Morning";
+  if (hour >= 12 && hour < 17) return "Afternoon";
+  if (hour >= 17 && hour < 21) return "Evening";
+  return "Night";
+}
+
+// Get average wait times
 app.get("/api/wait-times", (req, res) => {
   const data = JSON.parse(fs.readFileSync(dbPath));
   const result = {};
@@ -30,20 +38,19 @@ app.get("/api/wait-times", (req, res) => {
 
 // Save check-in/out time
 app.post("/api/submit", (req, res) => {
-  const { place, timeframe, duration } = req.body;
+  const { place, duration } = req.body;
+  const segment = getTimeSegment();
   const data = JSON.parse(fs.readFileSync(dbPath));
 
-  if (!data[place])
+  if (!data[place]) {
     data[place] = { Morning: [], Afternoon: [], Evening: [], Night: [] };
-  if (!data[place][timeframe]) data[place][timeframe] = [];
-
-  data[place][timeframe].push(duration);
+  }
+  data[place][segment].push(duration);
 
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-  res.json({ status: "success" });
+  res.json({ status: "success", segment });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
